@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<style type="text/css" title="currentStyle">
+        	@import "http://cdnjs.cloudflare.com/ajax/libs/datatables/1.9.4/css/demo_table.css";
+        	@import "http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css";
+        </style>
+        <title>@yield('title')</title>
+	<body>
+
+        {{ Breadcrumb::render() }}
+		<div class="container">
+		    <h1>@yield('heading')</h1>
+			@if (Session::has('message'))
+				<div class="flash alert">
+					<p>{{ Session::get('message') }}</p>
+				</div>
+			@endif
+
+			@yield('main')
+		</div>
+
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/datatables/1.9.4/jquery.dataTables.min.js"></script>
+        <script>
+          $(document).ready(function() {
+            $("[data-behavior='datatable']").dataTable( {
+              "bProcessing": true,
+              "bServerSide": true,
+              "sAjaxSource": ""
+            } );
+          });
+        </script>
+	</body>
+
+
+</html>

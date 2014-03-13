@@ -1,0 +1,20 @@
+<?php
+
+use ModelHelpers;
+use Way\Tests\Factory;
+
+class Ardent{{Model}}Test  extends TestCase {
+
+	protected $repo;
+
+	/**
+	 * Initialize
+	 */
+	public function setUp()
+	{
+		parent::setUp();
+		// Get the DatabaseRepository class
+		$this->repo = new MOK\Repo\{{Model}}\Ardent{{Model}}(new {{Model}});
+	}
+{{columns}}
+}

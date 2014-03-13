@@ -1,0 +1,126 @@
+<?php namespace {{Repository}}\Repo\{{Model}};
+
+use LaravelBook\Ardent\Ardent as Model;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
+/**
+ * Class Ardent{{Model}}
+ *
+ * @package MOK\Repo\{{Model}}
+ */
+class Ardent{{Model}} implements {{Model}}Interface {
+
+	/**
+	 * {{Model}} errors from validation
+	 *
+	 * @var array
+	 */
+	public $errors;
+
+	/**
+	 * @var \LaravelBook\Ardent\Ardent
+	 */
+	protected ${{model}};
+
+	/**
+	 * Constructor
+	 *
+	 * @param Model ${{model}}
+	 */
+	public function __construct(Model ${{model}})
+	{
+		$this->{{model}} = ${{model}};
+	}
+
+	/**
+	 * Retrieves {{Model}}
+	 *
+	 * @param $id
+	 *
+	 * @return mixed
+	 */
+	public function find($id)
+	{
+		${{model}} = $this->{{model}}
+			->where('id', $id)
+			->first();
+
+		return ${{model}};
+	}
+
+	/**
+	 * Retrieves {{model}}. If not found throws 404 error.
+	 *
+	 * @param $id
+	 *
+	 * @return mixed
+	 * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+	 */
+	public function findOrFail($id)
+	{
+		${{model}} = $this->find($id);
+
+		if(is_null(${{model}})){
+			throw new NotFoundHttpException;
+		}
+
+		return ${{model}};
+	}
+
+	/**
+	 * Selects columns from table
+	 *
+	 * @param array $columns
+	 *
+	 * @return mixed
+	 */
+	public function getColumns(array $columns)
+	{
+		return $this->{{model}}->select($columns);
+	}
+
+	/**
+	 * Updates {{model}}
+	 *
+	 * @param $id
+	 *
+	 * @return bool
+	 */
+	public function update($id)
+	{
+		${{model}} = $this->find($id);
+		if (!${{model}}->save()) {
+			$this->errors = ${{model}}->errors();
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Creates new {{model}}
+	 *
+	 * @return bool
+	 */
+	public function create()
+	{
+		if (!$this->{{model}}->save()) {
+			$this->errors = $this->{{model}}->errors();
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Deletes {{model}}
+	 *
+	 * @param $id
+	 *
+	 * @return bool|null
+	 */
+	public function delete($id)
+	{
+		return $this->{{model}}->find($id)->delete();
+	}
+
+}
+

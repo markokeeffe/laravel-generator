@@ -1,0 +1,58 @@
+<?php namespace {{Repository}}\Repo\{{Model}};
+
+interface {{Model}}Interface {
+
+	/**
+	 * Retrieves Comment
+	 *
+	 * @param $id
+	 *
+	 * @return mixed
+	 */
+	public function find($id);
+
+	/**
+	 * Retrieves {{model}}. If no comment found throws 404 error.
+	 *
+	 * @param $id
+	 *
+	 * @return mixed
+	 * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+	 */
+	public function findOrFail($id);
+
+	/**
+	 * Selects columns from table
+	 *
+	 * @param array $columns
+	 *
+	 * @return mixed
+	 */
+	public function getColumns(array $columns);
+
+	/**
+	 * Updates {{model}}
+	 *
+	 * @param $id
+	 *
+	 * @return bool
+	 */
+	public function update($id);
+
+	/**
+	 * Creates new {{model}}
+	 *
+	 * @return bool
+	 */
+	public function create();
+
+	/**
+	 * Deletes {{model}}
+	 *
+	 * @param $id
+	 *
+	 * @return bool|null
+	 */
+	public function delete($id);
+
+}

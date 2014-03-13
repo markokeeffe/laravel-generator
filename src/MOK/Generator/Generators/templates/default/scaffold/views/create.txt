@@ -1,0 +1,24 @@
+@extends('layouts.admin')
+
+@section('title')
+Create {{Model}}
+@stop
+@section('heading')
+Create {{Model}}
+@stop
+<?php Breadcrumb::push(array('title' => 'Create {{model}}')) ?>
+
+@section('main')
+
+{{Former::open()->method('POST')->action(URL::route('{{models}}.index'))}}
+
+    {{ Former::text('name')->label('Name') }}
+    {{ Former::text('type')->label('Type') }}
+
+{{Former::actions()
+    ->primary_submit('Submit')}}
+
+{{Former::close()}}
+
+@stop
+

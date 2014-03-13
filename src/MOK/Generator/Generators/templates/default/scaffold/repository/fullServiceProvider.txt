@@ -1,0 +1,24 @@
+<?php namespace {{Repository}}\Repo;
+
+use {{Model}};
+use Illuminate\Support\ServiceProvider;
+
+class RepoServiceProvider extends ServiceProvider {
+
+	/**
+	 * Register the service provider.
+	 *
+	 * @return void
+	 */
+	public function register()
+	{
+		$app = $this->app;
+
+		$app->bind('{{Repository}}\Repo\{{Model}}\{{Model}}Interface', function($app)
+			{
+				return new \{{Repository}}\Repo\{{Model}}\Ardent{{Model}}(new {{Model}});
+			});
+
+	}
+
+}

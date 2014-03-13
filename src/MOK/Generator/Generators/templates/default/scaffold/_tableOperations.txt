@@ -1,0 +1,5 @@
+{{ link_to_route('<?php echo $object; ?>.edit', 'Edit', array($id), array('class' => 'btn btn-info pull-left')) }}
+{{ Form::open(array('method' => 'DELETE', 'route' => array('<?php echo $object; ?>.destroy', $id), 'class' => 'form-inline')) }}
+<button type='submit' class='btn btn-danger'>Delete</button>
+{{ Form::close() }}
+

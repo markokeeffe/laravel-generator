@@ -1,0 +1,32 @@
+@extends('layouts.admin')
+
+@section('title')
+Show {{Model}}
+@stop
+@section('heading')
+Show {{Model}}
+@stop
+@section('actions')
+{{ link_to_route('{{models}}.index', 'Return to all {{models}}', null, array('class' => 'btn btn-sm')) }}
+@stop
+<?php Breadcrumb::push(array('title' => '{{Model}} ' . ${{model}}->id)) ?>
+
+@section('main')
+
+<table class="table table-striped table-bordered">
+	<thead>
+	<tr>
+        {{headings}}
+
+		<th>Actions</th>
+	</tr>
+	</thead>
+
+	<tbody>
+	<tr>
+		{{fields}}
+	</tr>
+	</tbody>
+</table>
+
+@stop

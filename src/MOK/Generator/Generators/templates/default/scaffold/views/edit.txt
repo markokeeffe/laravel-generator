@@ -1,0 +1,25 @@
+@extends('layouts.admin')
+
+@section('title')
+Edit {{Model}}
+@stop
+@section('heading')
+Edit {{Model}}
+@stop
+<?php Breadcrumb::push(array('title' => 'Edit {{model}} '.${{model}}->id)) ?>
+
+@section('main')
+{{Former::open()
+    ->method('PATCH')
+    ->action(URL::route('{{models}}.update', array(${{model}}->id)))}}
+{{Former::populate(${{model}})}}
+
+    {{ Former::text('name')->label('Name') }}
+    {{ Former::text('type')->label('Type') }}
+
+{{Former::actions()
+    ->primary_submit('Submit')
+    ->inverse_cancel('Cancel')}}
+{{ Former::close() }}
+
+@stop

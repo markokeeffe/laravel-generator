@@ -1,0 +1,11 @@
+<?php
+
+use LaravelBook\Ardent\Ardent;
+
+class {{className}} extends Ardent {
+	public $timestamps = {{timestamp}};
+	public $forceEntityHydrationFromInput = true; // hydrates whenever validation is called
+	protected $fillable = array({{fillable}});
+
+	public static $rules = array({{rules}});
+}

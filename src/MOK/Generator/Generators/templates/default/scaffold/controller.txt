@@ -1,0 +1,140 @@
+<?php
+
+use MOK\Repo\{{Model}}\{{Model}}Interface;
+
+class {{Models}}Controller extends BaseController
+{
+
+	/**
+	 * {{Model}} Repository
+	 *
+	 * @var {{Model}}
+	 */
+	protected ${{model}};
+
+	public function __construct({{Model}}Interface ${{model}})
+	{
+		$this->{{model}} = ${{model}};
+	}
+
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return Response
+	 */
+	public function index()
+	{
+	    //check if request is ajax
+		if (Request::ajax()) {
+
+			${{models}} = $this->{{model}}->getColumns(array({{columns}}));
+
+			$operations = View::make('partials/_tableOperations', array('object' => '{{models}}'))->render();
+
+			return Datatables::of(${{models}})
+				->add_column('operations', $operations)
+				->edit_column('id', '{{ link_to_action(\'{{Models}}Controller@show\', $id , array($id)) }}')
+				->make();
+
+		}
+
+		return View::make('{{models}}.index', compact('{{models}}'));
+	}
+
+	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @return Response
+	 */
+	public function create()
+	{
+
+		return View::make('{{models}}.create');
+	}
+
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @return Response
+	 */
+	public function store()
+	{
+
+		if ($this->{{model}}->create()) {
+			return Redirect::route('{{models}}.index');
+		}
+
+		return Redirect::route('{{models}}.create')
+			->withInput()
+			->withErrors($this->{{model}}->errors)
+			->with('message', 'There were validation errors.');
+	}
+
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int $id
+	 *
+	 * @return Response
+	 */
+	public function show($id)
+	{
+		${{model}} = $this->{{model}}->findOrFail($id);
+
+		return View::make('{{models}}.show', compact('{{model}}'));
+	}
+
+	/**
+	 * Show the form for editing the specified resource.
+	 *
+	 * @param  int $id
+	 *
+	 * @return Response
+	 */
+	public function edit($id)
+	{
+
+		${{model}} = $this->{{model}}->find($id);
+
+		if (is_null(${{model}})) {
+			return Redirect::route('{{models}}.index');
+		}
+
+		return View::make('{{models}}.edit', compact('{{model}}'));
+	}
+
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  int $id
+	 *
+	 * @return Response
+	 */
+	public function update($id)
+	{
+
+		if ($this->{{model}}->update($id)) {
+			return Redirect::route('{{models}}.show', $id);
+		}
+
+		return Redirect::route('{{models}}.edit', $id)
+			->withInput()
+			->withErrors($this->{{model}}->errors)
+			->with('message', 'There were validation errors.');
+	}
+
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int $id
+	 *
+	 * @return Response
+	 */
+	public function destroy($id)
+	{
+		$this->{{model}}->delete($id);
+
+		return Redirect::route('{{models}}.index');
+	}
+
+}

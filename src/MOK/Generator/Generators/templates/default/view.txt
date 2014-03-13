@@ -1,0 +1,14 @@
+@extends('layouts.scaffold')
+
+@section('title')
+{{title}}
+@stop
+@section('heading')
+{{title}}
+@stop
+
+@section('main')
+
+@stop
+
+

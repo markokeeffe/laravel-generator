@@ -1,0 +1,6 @@
+	$app->bind('{{Repository}}\Repo\{{Model}}\{{Model}}Interface', function($app)
+			{
+				return new \{{Repository}}\Repo\{{Model}}\Ardent{{Model}}(new {{Model}});
+			});
+
+	}

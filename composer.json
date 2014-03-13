@@ -1,0 +1,27 @@
+{
+    "name": "markokeeffe/generator",
+    "description": "",
+    "authors": [
+        {
+            "name": "Mark O'Keeffe",
+            "email": "mark.ok@me.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "illuminate/support": "4.0.x",
+        "way/generators": "dev-master",
+        "bllim/datatables": "*",
+        "markokeeffe/breadcrumb": "dev-master",
+        "barryvdh/laravel-ide-helper": "dev-master"
+    },
+    "autoload": {
+        "classmap": [
+            "src/migrations"
+        ],
+        "psr-0": {
+            "MOK\\Generator": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
